@@ -26,8 +26,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //[self.activityIndicator startAnimating];
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -45,13 +43,35 @@
 
 - (void)fetchMovies{
     
+    //-additional Initial network requirement checking
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Your wifi aint wi-fly"
+    preferredStyle:(UIAlertControllerStyleAlert)];
+    // create a cancel action
+    UIAlertAction *tryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleCancel
+    handler:^(UIAlertAction * _Nonnull action) {
+    // handle cancel response here. Doing nothing will dismiss the view.
+        //[self.refreshControl endRefreshing];
+        [self fetchMovies];
+    
+    }];
+    // add the cancel action to the alertController
+    [alert addAction:tryAction];
+    // create an OK action
+    
+    
 
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
-            NSLog(@"%@", [error localizedDescription]);
+            // possibly remove later NSLog(@"%@", [error localizedDescription]);
+            
+        //-additional code for what happens after the alert controller has finished presenting
+            [self presentViewController:alert animated:YES completion:^{
+                
+            }];
+            
         }
         else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
