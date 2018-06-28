@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2E2220620E5597300C821F1 /* movieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E2220520E5597300C821F1 /* movieCell.m */; };
 		B2F10E8820E460FD0066ED56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F10E8720E460FD0066ED56 /* AppDelegate.m */; };
 		B2F10E8E20E460FD0066ED56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F10E8C20E460FD0066ED56 /* Main.storyboard */; };
 		B2F10E9020E460FD0066ED56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2F10E8F20E460FD0066ED56 /* Assets.xcassets */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2E2220420E5597300C821F1 /* movieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = movieCell.h; sourceTree = "<group>"; };
+		B2E2220520E5597300C821F1 /* movieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = movieCell.m; sourceTree = "<group>"; };
 		B2F10E8320E460FD0066ED56 /* FlixApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlixApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2F10E8620E460FD0066ED56 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B2F10E8720E460FD0066ED56 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 		B2F10EB920E464FA0066ED56 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				B2E2220420E5597300C821F1 /* movieCell.h */,
+				B2E2220520E5597300C821F1 /* movieCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			files = (
 				B2F10E9620E460FD0066ED56 /* main.m in Sources */,
 				B2F10E8820E460FD0066ED56 /* AppDelegate.m in Sources */,
+				B2E2220620E5597300C821F1 /* movieCell.m in Sources */,
 				B2F10EBE20E468D60066ED56 /* MoviesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
