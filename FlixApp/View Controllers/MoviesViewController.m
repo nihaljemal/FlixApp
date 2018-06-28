@@ -42,6 +42,7 @@
             }
             // TODO: Store the movies in a property to use elsewhere
             // TODO: Reload your table view data
+            [self.tableView reloadData];
         }
     }];
     [task resume];
