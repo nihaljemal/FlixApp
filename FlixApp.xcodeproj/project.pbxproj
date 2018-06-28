@@ -101,6 +101,9 @@
 		B2F10E8520E460FD0066ED56 /* FlixApp */ = {
 			isa = PBXGroup;
 			children = (
+				B2F10EBB20E465230066ED56 /* Models */,
+				B2F10EBA20E465130066ED56 /* View Controllers */,
+				B2F10EB920E464FA0066ED56 /* views */,
 				B2F10E8620E460FD0066ED56 /* AppDelegate.h */,
 				B2F10E8720E460FD0066ED56 /* AppDelegate.m */,
 				B2F10E8920E460FD0066ED56 /* ViewController.h */,
@@ -130,6 +133,27 @@
 				B2F10EAC20E460FD0066ED56 /* Info.plist */,
 			);
 			path = FlixAppUITests;
+			sourceTree = "<group>";
+		};
+		B2F10EB920E464FA0066ED56 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		B2F10EBA20E465130066ED56 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B2F10EBB20E465230066ED56 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
