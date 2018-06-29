@@ -40,8 +40,6 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://i.imgur.com/oCCZfeh.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<img src='https://thumbs.gfycat.com/UntidyTimelyGrouper-max-1mb.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
