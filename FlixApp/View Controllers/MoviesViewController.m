@@ -10,6 +10,7 @@
 #import "movieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
+#import "SearchBarViewController.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,10 +23,16 @@
 
 @implementation MoviesViewController
 
+////- (IBAction)SearchButton:(id)sender {
+//    UIView animateWithDuration:0.2
+//animations:^{
+//    <#code#>
+//}
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
@@ -37,28 +44,13 @@
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
     
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    
-    
 }
 
+//- (IBAction)searchButton:(id)sender {
+//}
+
+
 - (void)fetchMovies{
-    
-    //-additional Initial network requirement checking
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Your wifi aint wi-fly"
-    preferredStyle:(UIAlertControllerStyleAlert)];
-    // create a cancel action
-    UIAlertAction *tryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleCancel
-    handler:^(UIAlertAction * _Nonnull action) {
-    // handle cancel response here. Doing nothing will dismiss the view.
-        //[self.refreshControl endRefreshing];
-        [self fetchMovies];
-    
-    }];
-    // add the cancel action to the alertController
-    [alert addAction:tryAction];
-    // create an OK action
-    
-    
 
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
@@ -68,6 +60,22 @@
             // possibly remove later NSLog(@"%@", [error localizedDescription]);
             
         //-additional code for what happens after the alert controller has finished presenting
+            //-additional Initial network requirement checking
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Your wifi aint wi-fly"
+                                                                    preferredStyle:(UIAlertControllerStyleAlert)];
+            // create a cancel action
+            UIAlertAction *tryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleCancel
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  // handle cancel response here. Doing nothing will dismiss the view.
+                                                                  //[self.refreshControl endRefreshing];
+                                                                  [self fetchMovies];
+                                                                  
+                                                              }];
+            // add the cancel action to the alertController
+            [alert addAction:tryAction];
+            // create an OK action
+         
+            [self.refreshControl endRefreshing];
             [self presentViewController:alert animated:YES completion:^{
                 
             }];

@@ -10,6 +10,7 @@
 		A167D306BF74942FFEB96C79 /* libPods-FlixAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE49F627E8E12B3EFB64A33 /* libPods-FlixAppTests.a */; };
 		A82BCAEACF8C210BD78701C7 /* libPods-FlixApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9068341583291238C486FBC /* libPods-FlixApp.a */; };
 		B299AA7F20E579D300C741D3 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B299AA7E20E579D300C741D3 /* DetailsViewController.m */; };
+		B299AA8220E5B98F00C741D3 /* SearchBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B299AA8120E5B98F00C741D3 /* SearchBarViewController.m */; };
 		B2E2220620E5597300C821F1 /* movieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E2220520E5597300C821F1 /* movieCell.m */; };
 		B2F10E8820E460FD0066ED56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F10E8720E460FD0066ED56 /* AppDelegate.m */; };
 		B2F10E8E20E460FD0066ED56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F10E8C20E460FD0066ED56 /* Main.storyboard */; };
@@ -47,6 +48,8 @@
 		A9068341583291238C486FBC /* libPods-FlixApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FlixApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B299AA7D20E579D300C741D3 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		B299AA7E20E579D300C741D3 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		B299AA8020E5B98F00C741D3 /* SearchBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarViewController.h; sourceTree = "<group>"; };
+		B299AA8120E5B98F00C741D3 /* SearchBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarViewController.m; sourceTree = "<group>"; };
 		B2E2220420E5597300C821F1 /* movieCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = movieCell.h; sourceTree = "<group>"; };
 		B2E2220520E5597300C821F1 /* movieCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = movieCell.m; sourceTree = "<group>"; };
 		B2F10E8320E460FD0066ED56 /* FlixApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlixApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +198,8 @@
 				B2F10EBD20E468D60066ED56 /* MoviesViewController.m */,
 				B299AA7D20E579D300C741D3 /* DetailsViewController.h */,
 				B299AA7E20E579D300C741D3 /* DetailsViewController.m */,
+				B299AA8020E5B98F00C741D3 /* SearchBarViewController.h */,
+				B299AA8120E5B98F00C741D3 /* SearchBarViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				B299AA7F20E579D300C741D3 /* DetailsViewController.m in Sources */,
 				B2F10E8820E460FD0066ED56 /* AppDelegate.m in Sources */,
 				B2E2220620E5597300C821F1 /* movieCell.m in Sources */,
+				B299AA8220E5B98F00C741D3 /* SearchBarViewController.m in Sources */,
 				B2F10EBE20E468D60066ED56 /* MoviesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
