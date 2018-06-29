@@ -10,7 +10,6 @@
 #import "movieCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "DetailsViewController.h"
-#import "SearchBarViewController.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -19,29 +18,29 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+//For purpose of searchbar
+@property (strong, nonatomic) NSArray *filteredData;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBarView;
+
 @end
 
 @implementation MoviesViewController
 
-////- (IBAction)SearchButton:(id)sender {
-//    UIView animateWithDuration:0.2
-//animations:^{
-//    <#code#>
-//}
-//}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.searchBarView.delegate = self;
+    
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     [self.activityIndicator startAnimating];
     
-    [self fetchMovies];
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    
+    [self fetchMovies];
     
     [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
@@ -51,33 +50,25 @@
 
 
 - (void)fetchMovies{
-
     NSURL *url = [NSURL URLWithString:@"https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error != nil) {
-            // possibly remove later NSLog(@"%@", [error localizedDescription]);
+            //[self.refreshControl endRefreshing];
+
+            NSLog(@"%@", [error localizedDescription]);
             
         //-additional code for what happens after the alert controller has finished presenting
             //-additional Initial network requirement checking
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Your wifi aint wi-fly"
                                                                     preferredStyle:(UIAlertControllerStyleAlert)];
-            // create a cancel action
             UIAlertAction *tryAction = [UIAlertAction actionWithTitle:@"Try Again" style:UIAlertActionStyleCancel
                                                               handler:^(UIAlertAction * _Nonnull action) {
-                                                                  // handle cancel response here. Doing nothing will dismiss the view.
-                                                                  //[self.refreshControl endRefreshing];
                                                                   [self fetchMovies];
-                                                                  
                                                               }];
-            // add the cancel action to the alertController
             [alert addAction:tryAction];
-            // create an OK action
-         
-            [self.refreshControl endRefreshing];
             [self presentViewController:alert animated:YES completion:^{
-                
             }];
             
         }
@@ -86,6 +77,7 @@
             NSLog(@"%@", dataDictionary);
             // TODO: Get the array of movies
             self.movies = dataDictionary[@"results"];
+            self.filteredData = dataDictionary[@"results"];
             for (NSDictionary *movie in self.movies){
                 NSLog(@"%@", movie[@"title"]);
             }
@@ -106,13 +98,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    return self.filteredData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     movieCell *cell = [tableView dequeueReusableCellWithIdentifier:@"movieCell"];
     
-    NSDictionary *movie = self.movies[indexPath.row];
+    NSDictionary *movie = self.filteredData[indexPath.row];
     cell.titleLabel.text = movie[@"title"];
     cell.SynopsisLabel.text = movie[@"overview"];
     //cell.textLabel.text = movie[@"title"];
@@ -123,6 +115,27 @@
     cell.posterLabel.image = nil;
     [cell.posterLabel setImageWithURL:posterURL];
     return cell;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length != 0) {
+        
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *obj, NSDictionary *bindings) {
+            
+            BOOL s = [obj[@"title"] containsString:searchText];
+            return s;
+        }];
+        self.filteredData = [self.movies filteredArrayUsingPredicate:predicate];
+        
+        NSLog(@"%@", self.filteredData);
+        
+    }
+    else {
+        self.filteredData = self.movies;
+    }
+    
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - Navigation
